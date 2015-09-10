@@ -1,0 +1,15 @@
+import vlinder.control
+import vlinder.logic
+import vlinder.option
+
+sub isa[T: *][U: *](value: U): logic.Boolean {
+    __isa[T](value)
+}
+
+sub unsafeCast[T: *][U: *](value: U): T {
+    __cast(value)
+}
+
+sub cast[T: *][U: *](value: U): option.Option[T] {
+    control.if(isa[T](value), option.Some(unsafeCast(value)), option.None)
+}
